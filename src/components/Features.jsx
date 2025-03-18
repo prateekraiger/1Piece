@@ -39,6 +39,7 @@ export const BentoTilt = ({ children, className = "", id = "" }) => {
 export const BentoCard = ({ src, title, description, isReadMore, link }) => {
   return (
     <div className="relative size-full">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
       <video
         src={src}
         loop
@@ -46,11 +47,11 @@ export const BentoCard = ({ src, title, description, isReadMore, link }) => {
         autoPlay
         className="absolute left-0 top-0 size-full object-cover object-center"
       />
-      <div className="relative z-10 flex size-full flex-col justify-between p-5 text-white">
+      <div className="relative z-20 flex size-full flex-col justify-between p-5 text-white">
         <div>
           <h1 className="bento-title special-font text-shadow-lg">{title}</h1>
           {description && (
-            <p className="mt-3 max-w-64 text-xs md:text-base text-shadow max-md:hidden">
+            <p className="mt-3 max-w-64 text-xs md:text-base text-shadow">
               {description}
             </p>
           )}
@@ -58,7 +59,7 @@ export const BentoCard = ({ src, title, description, isReadMore, link }) => {
 
         {isReadMore && (
           <div
-            className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-white/90 px-5 py-2 text-xs uppercase text-black/80 max-md:hidden mt-2"
+            className="border-hsla relative flex w-fit cursor-pointer items-center gap-1 overflow-hidden rounded-full bg-white/90 px-5 py-2 text-xs uppercase text-black/80 mt-2"
             onClick={() => link && window.open(link, "_blank")}
           >
             <TiLocationArrow className="relative z-20" />
@@ -71,93 +72,109 @@ export const BentoCard = ({ src, title, description, isReadMore, link }) => {
 };
 
 const Features = () => (
-  <section className="bg-black pb-52">
+  <section className="bg-black pb-32">
     <div className="container mx-auto px-3 md:px-10">
-      <div className="px-5 py-32">
-        <p className="font-circular-web text-lg text-blue-50">
-          Enter the **Grand Line**
+      <div className="px-5 py-20">
+        <p className="font-circular-web text-lg text-amber-400">
+          The Legends Live On
         </p>
-        <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
-          The journey to becoming the **Pirate King** begins here. **Legends,
-          myths, and the strongest warriors** await beyond the horizon.
+        <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-80">
+          Masters of the <span className="text-red-500">Grand Line</span>. The
+          strongest warriors in the world of One Piece.
         </p>
       </div>
 
-      {/* Featured Bento Card - Luffy Gear 5 */}
-      <BentoTilt className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
-        <BentoCard
-          src="videos/luffy-gear5.mp4"
-          title={<>**Luffy - Gear 5**</>}
-          description="Luffy's most powerful transformation, **liberating his true potential with the power of the Sun God Nika.**"
-          isReadMore
-          link={"https://onepiece.fandom.com/wiki/Gear_Fifth"}
-        />
-      </BentoTilt>
-
-      <div className="xl:grid xl:h-[135vh] w-full xl:grid-cols-2 xl:grid-rows-3 gap-7 flex flex-col items-center">
-        {/* Zoro */}
+      {/* Two cards in a row layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Card 1 - Zoro */}
         <BentoTilt
           id="zoro"
-          className="bento-tilt_1 xl:col-span-1 w-full border-2 border-green-500"
+          className="w-full border border-green-500/30 rounded-md overflow-hidden h-[500px]"
         >
           <BentoCard
             src="videos/zoro.mp4"
-            title={
-              <>
-                R<b>o</b>r<b>o</b>n<b>o</b>a Z<b>o</b>ro
-              </>
-            }
-            description="The **swordsman of the Straw Hat crew**, mastering the **Three-Sword Style.**"
+            title="Roronoa Zoro"
+            description="The swordsman of the Straw Hat crew, mastering the Three-Sword Style."
             isReadMore
             link={"https://onepiece.fandom.com/wiki/Roronoa_Zoro"}
           />
         </BentoTilt>
 
-        {/* Shanks */}
-        <BentoTilt className="bento-tilt_1 xl:col-span-1 w-full">
+        {/* Card 2 - Shanks */}
+        <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
             src="videos/shanks.mp4"
-            title={<>**Red-Haired Shanks**</>}
-            description="One of the **Four Emperors**, the man who inspired **Luffy** to become a pirate."
+            title="Red-Haired Shanks"
+            description="One of the Four Emperors, the man who inspired Luffy to become a pirate."
             isReadMore
             link={"https://onepiece.fandom.com/wiki/Shanks"}
           />
         </BentoTilt>
+        {/* Trafalgar Law */}
+        <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
+          <BentoCard
+            src="videos/law.mp4"
+            title={
+              <>
+                TRAFALGAR
+                <br />
+                D. WATER LAW
+              </>
+            }
+            description="Surgeon of Death · Former Warlord · Ope Ope no Mi User"
+            isReadMore
+            link="https://onepiece.fandom.com/wiki/Trafalgar_D._Water_Law"
+          />
+        </BentoTilt>
+
+        {/* Monkey D. Garp */}
+        <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
+          <BentoCard
+            src="videos/garp.mp4"
+            title={
+              <>
+                MONKEY D.
+                <br />
+                GARP
+              </>
+            }
+            description="The Hero of Marines · Fist of Justice · Dragon's Father"
+            isReadMore
+            link="https://onepiece.fandom.com/wiki/Monkey_D._Garp"
+          />
+        </BentoTilt>
 
         {/* Gol D. Roger */}
-        <BentoTilt className="bento-tilt_1 row-span-1 xl:col-span-1 xl:row-span-2 w-full h-full">
+        <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
             src="videos/roger.mp4"
             title={
               <>
-                G<b>o</b>l D. R<b>o</b>ger
+                GOL D.
+                <br />
+                ROGER
               </>
             }
-            description="The **legendary Pirate King**, who conquered the **Grand Line** and left the **One Piece**."
+            description="The Pirate King · Conqueror of the Grand Line"
             isReadMore
-            link={"https://onepiece.fandom.com/wiki/Gol_D._Roger"}
+            link="https://onepiece.fandom.com/wiki/Gol_D._Roger"
           />
         </BentoTilt>
 
         {/* Blackbeard */}
-        <BentoTilt className="bento-tilt_1 w-full xl:col-span-1 xl:me-0">
+        <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
             src="videos/blackbeard.mp4"
-            title={<>**Marshall D. Teach (Blackbeard)**</>}
-            description="The only pirate to **wield two Devil Fruits** and a dangerous rival to Luffy."
+            title={
+              <>
+                MARSHALL D.
+                <br />
+                TEACH
+              </>
+            }
+            description="Two Devil Fruit Wielder · Emperor of the Sea"
             isReadMore
-            link={"https://onepiece.fandom.com/wiki/Marshall_D._Teach"}
-          />
-        </BentoTilt>
-
-        {/* One Piece Map Animation */}
-        <BentoTilt className="bento-tilt_2 w-full">
-          <video
-            src="videos/onepiece-map.mp4"
-            loop
-            muted
-            autoPlay
-            className="size-full object-cover object-center"
+            link="https://onepiece.fandom.com/wiki/Marshall_D._Teach"
           />
         </BentoTilt>
       </div>
