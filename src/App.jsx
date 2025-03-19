@@ -6,6 +6,7 @@ import Features from "./components/Features";
 import Story from "./components/Story";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import onePieceLogo from "/img/profile/logo.png";
 
 const App = () => {
   function getLogo() {
@@ -15,11 +16,11 @@ const App = () => {
 
   return (
     <main className="relative min-h-screen w-screen overflow-x-hidden">
-      <NavBar logo={getLogo()} />
+      <NavBar logo={onePieceLogo} />
       <Hero />
       <About />
       <Features />
-      <Story /> 
+      <Story />
       <Contact />
       <Footer />
     </main>

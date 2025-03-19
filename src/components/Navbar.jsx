@@ -6,7 +6,9 @@ import { TiLocationArrow } from "react-icons/ti";
 
 import Button from "./Button";
 
-const navItems = ["Beerus", "Goku", "About", "Contact"];
+// One Piece-themed navigation items
+
+const navItems = ["Luffy", "Zoro", "About", "Contact"];
 
 const NavBar = ({ logo }) => {
   // State for toggling audio and visual indicator
@@ -71,14 +73,14 @@ const NavBar = ({ logo }) => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-4">
-            <img src={logo} alt="logo" className="h-16" />
+            <img src={logo} alt="One Piece Logo" className="h-16" />
 
             <Button
               id="product-button"
-              title="Product"
+              title="Watch Trailer"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
-              link={"https://www.imdb.com/title/tt4644488"}
+              containerClass="bg-red-500 text-white md:flex hidden items-center justify-center gap-1 hover:bg-red-600 transition-colors duration-300"
+              link={"https://www.youtube.com/watch?v=dM7x1PNZDo0"}
             />
           </div>
 
@@ -88,8 +90,8 @@ const NavBar = ({ logo }) => {
               {navItems.map((item, index) => (
                 <a
                   key={index}
-                  href={`#${item.toLowerCase()}`}
-                  className="nav-hover-btn"
+                  href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                  className="nav-hover-btn text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2"
                 >
                   {item}
                 </a>
@@ -109,7 +111,7 @@ const NavBar = ({ logo }) => {
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}
-                  className={clsx("indicator-line", {
+                  className={clsx("indicator-line bg-yellow-400", {
                     active: isIndicatorActive,
                   })}
                   style={{
