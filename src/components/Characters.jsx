@@ -71,7 +71,7 @@ export const BentoCard = ({ src, title, description, isReadMore, link }) => {
   );
 };
 
-const Features = () => (
+const Characters = () => (
   <section className="bg-black pb-32">
     <div className="container mx-auto px-3 md:px-10">
       <div className="px-5 py-20 text-center">
@@ -187,4 +187,4 @@ const Features = () => (
   </section>
 );
 
-export default Features;
+export default Characters;
