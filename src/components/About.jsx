@@ -252,16 +252,16 @@ const About = () => {
             loop
             muted
             playsInline
-            className="about-video absolute left-0 top-0 size-full object-cover brightness-110 contrast-125 saturate-[1.4]"
+            className="about-video absolute left-0 top-0 size-full object-cover brightness-110 contrast-125 saturate-[1.4] p-4 sm:p-6 md:p-8"
           />
 
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black/90" />
 
-          <div className="content-overlay absolute bottom-0 left-0 right-0 p-8 text-center">
-            <p className="quote-text text-2xl font-bold text-amber-400/90 sm:text-3xl md:text-4xl [clip-path:polygon(0%_100%,100%_100%,100%_100%,0%_100%)]">
+          <div className="content-overlay absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 text-center">
+            <p className="quote-text text-2xl font-bold text-amber-400/90 sm:text-3xl md:text-4xl lg:text-5xl max-w-3xl mx-auto [clip-path:polygon(0%_100%,100%_100%,100%_100%,0%_100%)]">
               "The One Piece... IS REAL!"
             </p>
-            <p className="author-text mt-3 text-gray-300/80 md:text-lg opacity-0 [clip-path:polygon(0%_100%,100%_100%,100%_100%,0%_100%)]">
+            <p className="author-text mt-4 sm:mt-6 text-gray-300/80 text-lg sm:text-xl md:text-2xl opacity-0 [clip-path:polygon(0%_100%,100%_100%,100%_100%,0%_100%)]">
               - Edward Newgate, The Strongest Man in the World
             </p>
           </div>
