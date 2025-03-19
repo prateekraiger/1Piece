@@ -12,52 +12,77 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
-
   const [loading, setLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
 
   const totalVideos = 4;
   const nextVdRef = useRef(null);
+  const currentVdRef = useRef(null);
+  const mainVdRef = useRef(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
   };
 
   useEffect(() => {
-    if (loadedVideos === totalVideos - 1) {
+    if (loadedVideos >= totalVideos - 1) {
       setLoading(false);
     }
   }, [loadedVideos]);
 
   const handleMiniVdClick = () => {
-    setHasClicked(true);
-
-    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+    // Wait for the next video to be ready before transitioning
+    if (nextVdRef.current && nextVdRef.current.readyState >= 3) {
+      setHasClicked(true);
+      setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+    }
   };
 
   useGSAP(
     () => {
-      if (hasClicked) {
+      if (hasClicked && nextVdRef.current) {
         gsap.set("#next-video", { visibility: "visible" });
-        gsap.to("#next-video", {
+
+        // Create a timeline for better control
+        const tl = gsap.timeline({
+          onStart: () => {
+            // Only play if the video is ready
+            if (nextVdRef.current.readyState >= 3) {
+              const playPromise = nextVdRef.current.play();
+
+              // Handle the play promise to avoid interruption errors
+              if (playPromise !== undefined) {
+                playPromise.catch((error) => {
+                  console.log("Play was prevented:", error);
+                });
+              }
+            }
+          },
+        });
+
+        tl.to("#next-video", {
           transformOrigin: "center center",
           scale: 1,
           width: "100%",
           height: "100%",
           duration: 1,
           ease: "power1.inOut",
-          onStart: () => nextVdRef.current.play(),
         });
-        gsap.from("#current-video", {
-          transformOrigin: "center center",
-          scale: 0,
-          duration: 1.5,
-          ease: "power1.inOut",
-        });
+
+        tl.from(
+          "#current-video",
+          {
+            transformOrigin: "center center",
+            scale: 0,
+            duration: 1.5,
+            ease: "power1.inOut",
+          },
+          "-=0.5"
+        );
       }
     },
     {
-      dependencies: [currentIndex],
+      dependencies: [currentIndex, hasClicked],
       revertOnUpdate: true,
     }
   );
@@ -107,10 +132,12 @@ const Hero = () => {
                 className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
               >
                 <video
-                  ref={nextVdRef}
+                  ref={currentVdRef}
                   src={getVideoSrc((currentIndex % totalVideos) + 1)}
                   loop
                   muted
+                  playsInline
+                  preload="auto"
                   id="current-video"
                   className="size-64 origin-center scale-150 object-cover object-center"
                   onLoadedData={handleVideoLoad}
@@ -124,17 +151,22 @@ const Hero = () => {
             src={getVideoSrc(currentIndex)}
             loop
             muted
+            playsInline
+            preload="auto"
             id="next-video"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
           <video
+            ref={mainVdRef}
             src={getVideoSrc(
               currentIndex === totalVideos - 1 ? 1 : currentIndex
             )}
             autoPlay
             loop
             muted
+            playsInline
+            preload="auto"
             className="absolute left-0 top-0 size-full object-cover object-center"
             onLoadedData={handleVideoLoad}
           />
