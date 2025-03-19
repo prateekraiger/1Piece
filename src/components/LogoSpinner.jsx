@@ -10,7 +10,7 @@ const LogoSpinner = ({ onLoadComplete }) => {
     const timer = setTimeout(() => {
       setLoading(false);
       if (onLoadComplete) onLoadComplete();
-    }, 2500); // 2.5 seconds loading time
+    }, 1500); // 2.5 seconds loading time
 
     return () => clearTimeout(timer);
   }, [onLoadComplete]);
