@@ -20,6 +20,12 @@ const Hero = () => {
   const currentVdRef = useRef(null);
   const mainVdRef = useRef(null);
 
+  // Generate unique URLs to avoid cache issues
+  const getVideoSrc = (index) => {
+    // Add a cache-busting parameter
+    return `videos/hero-${index}.mp4?v=${Date.now()}`;
+  };
+
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
   };
@@ -30,12 +36,68 @@ const Hero = () => {
     }
   }, [loadedVideos]);
 
-  const handleMiniVdClick = () => {
-    // Wait for the next video to be ready before transitioning
-    if (nextVdRef.current && nextVdRef.current.readyState >= 3) {
-      setHasClicked(true);
-      setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+  // Preload videos to avoid cache issues
+  useEffect(() => {
+    // Create an array of video sources to preload
+    const videoSources = [];
+    for (let i = 1; i <= totalVideos; i++) {
+      videoSources.push(`videos/hero-${i}.mp4`);
     }
+
+    // Preload videos
+    videoSources.forEach((src) => {
+      const video = document.createElement("video");
+      video.src = src;
+      video.preload = "auto";
+      video.muted = true;
+      video.style.display = "none";
+      document.body.appendChild(video);
+
+      // Remove the element once loaded or on error
+      const cleanup = () => {
+        document.body.removeChild(video);
+        handleVideoLoad();
+      };
+
+      video.addEventListener("loadeddata", cleanup, { once: true });
+      video.addEventListener("error", cleanup, { once: true });
+    });
+
+    // Cleanup function
+    return () => {
+      const hiddenVideos = document.querySelectorAll(
+        'video[style="display: none;"]'
+      );
+      hiddenVideos.forEach((video) => {
+        if (document.body.contains(video)) {
+          document.body.removeChild(video);
+        }
+      });
+    };
+  }, []);
+
+  // Play main video when component is mounted
+  useEffect(() => {
+    if (mainVdRef.current) {
+      const playVideo = () => {
+        mainVdRef.current.play().catch((err) => {
+          console.log("Main video play error:", err);
+        });
+      };
+
+      if (document.readyState === "complete") {
+        playVideo();
+      } else {
+        window.addEventListener("load", playVideo, { once: true });
+      }
+    }
+  }, []);
+
+  const handleMiniVdClick = () => {
+    setHasClicked(true);
+
+    // Simply update the index - videos are already preloaded
+    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
   };
 
   useGSAP(
@@ -43,22 +105,7 @@ const Hero = () => {
       if (hasClicked && nextVdRef.current) {
         gsap.set("#next-video", { visibility: "visible" });
 
-        // Create a timeline for better control
-        const tl = gsap.timeline({
-          onStart: () => {
-            // Only play if the video is ready
-            if (nextVdRef.current.readyState >= 3) {
-              const playPromise = nextVdRef.current.play();
-
-              // Handle the play promise to avoid interruption errors
-              if (playPromise !== undefined) {
-                playPromise.catch((error) => {
-                  console.log("Play was prevented:", error);
-                });
-              }
-            }
-          },
-        });
+        const tl = gsap.timeline();
 
         tl.to("#next-video", {
           transformOrigin: "center center",
@@ -67,6 +114,13 @@ const Hero = () => {
           height: "100%",
           duration: 1,
           ease: "power1.inOut",
+          onStart: () => {
+            if (nextVdRef.current) {
+              nextVdRef.current.play().catch((err) => {
+                console.log("Animation video play error:", err);
+              });
+            }
+          },
         });
 
         tl.from(
@@ -105,13 +159,10 @@ const Hero = () => {
     });
   });
 
-  const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
-
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {loading && (
         <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
-          {/* https://uiverse.io/G4b413l/tidy-walrus-92 */}
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
@@ -133,14 +184,13 @@ const Hero = () => {
               >
                 <video
                   ref={currentVdRef}
-                  src={getVideoSrc((currentIndex % totalVideos) + 1)}
+                  src={`videos/hero-${(currentIndex % totalVideos) + 1}.mp4`}
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  crossOrigin="anonymous"
                   id="current-video"
                   className="size-64 origin-center scale-150 object-cover object-center"
-                  onLoadedData={handleVideoLoad}
                 />
               </div>
             </VideoPreview>
@@ -148,27 +198,25 @@ const Hero = () => {
 
           <video
             ref={nextVdRef}
-            src={getVideoSrc(currentIndex)}
+            src={`videos/hero-${currentIndex}.mp4`}
             loop
             muted
             playsInline
-            preload="auto"
+            crossOrigin="anonymous"
             id="next-video"
             className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
-            onLoadedData={handleVideoLoad}
           />
           <video
             ref={mainVdRef}
-            src={getVideoSrc(
+            src={`videos/hero-${
               currentIndex === totalVideos - 1 ? 1 : currentIndex
-            )}
+            }.mp4`}
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            crossOrigin="anonymous"
             className="absolute left-0 top-0 size-full object-cover object-center"
-            onLoadedData={handleVideoLoad}
           />
         </div>
 

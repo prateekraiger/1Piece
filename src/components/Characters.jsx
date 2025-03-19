@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { TiLocationArrow } from "react-icons/ti";
+import AnimatedTitle from "./AnimatedTitle";
 
 export const BentoTilt = ({ children, className = "", id = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
@@ -78,9 +79,11 @@ const Characters = () => (
         <p className="font-circular-web text-lg text-amber-400 mb-2">
           The Legends Live On
         </p>
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-          Masters of the <span className="text-red-500">Grand Line</span>
-        </h1>
+        <AnimatedTitle
+          title="Masters of the <b>Grand Line</b>"
+          className="special-font !text-4xl sm:!text-5xl md:!text-6xl lg:!text-[4rem] xl:!text-[5rem] font-zentry !font-black !leading-[0.9] text-white"
+        />
+
         <p className="max-w-2xl mx-auto font-circular-web text-lg text-blue-50 opacity-80">
           Discover the strongest warriors, cunning strategists, and legendary
           pirates from the world of One Piece. Each character has a unique story
