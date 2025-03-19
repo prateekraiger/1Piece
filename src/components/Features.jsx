@@ -74,13 +74,17 @@ export const BentoCard = ({ src, title, description, isReadMore, link }) => {
 const Features = () => (
   <section className="bg-black pb-32">
     <div className="container mx-auto px-3 md:px-10">
-      <div className="px-5 py-20">
-        <p className="font-circular-web text-lg text-amber-400">
+      <div className="px-5 py-20 text-center">
+        <p className="font-circular-web text-lg text-amber-400 mb-2">
           The Legends Live On
         </p>
-        <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-80">
-          Masters of the <span className="text-red-500">Grand Line</span>. The
-          strongest warriors in the world of One Piece.
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+          Masters of the <span className="text-red-500">Grand Line</span>
+        </h1>
+        <p className="max-w-2xl mx-auto font-circular-web text-lg text-blue-50 opacity-80">
+          Discover the strongest warriors, cunning strategists, and legendary
+          pirates from the world of One Piece. Each character has a unique story
+          and power that defines their legacy.
         </p>
       </div>
 
@@ -103,13 +107,14 @@ const Features = () => (
         {/* Card 2 - Shanks */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/shanks.mp4"
+            src="videos/red-shanks.mp4"
             title="Red-Haired Shanks"
             description="One of the Four Emperors, the man who inspired Luffy to become a pirate."
             isReadMore
             link={"https://onepiece.fandom.com/wiki/Shanks"}
           />
         </BentoTilt>
+
         {/* Trafalgar Law */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
