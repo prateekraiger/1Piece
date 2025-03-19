@@ -123,9 +123,6 @@ const Contact = () => {
             link="https://github.com/prateekraiger"
           />
         </div>
-
-        {/* Mobile Background Pattern */}
-        <div className="absolute inset-0 sm:hidden opacity-20 bg-[url('/img/pirate-pattern.png')] bg-repeat" />
       </div>
     </div>
   );
