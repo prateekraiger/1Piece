@@ -72,7 +72,7 @@ const FloatingImage = () => {
 
   return (
     <div className="min-h-screen w-screen bg-black text-blue-50 flex justify-center items-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/textures/noise.png')] opacity-10 mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" />
 
       <div className="flex flex-col items-center py-20 w-full max-w-6xl px-4 md:px-8">
         <div className="mb-6 text-center">
