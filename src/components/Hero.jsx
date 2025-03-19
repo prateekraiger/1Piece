@@ -14,17 +14,12 @@ const Hero = () => {
   const [hasClicked, setHasClicked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
   const totalVideos = 4;
   const nextVdRef = useRef(null);
   const currentVdRef = useRef(null);
   const mainVdRef = useRef(null);
-
-  // Generate unique URLs to avoid cache issues
-  const getVideoSrc = (index) => {
-    // Add a cache-busting parameter
-    return `videos/hero-${index}.mp4?v=${Date.now()}`;
-  };
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -36,15 +31,13 @@ const Hero = () => {
     }
   }, [loadedVideos]);
 
-  // Preload videos to avoid cache issues
+  // Preload videos
   useEffect(() => {
-    // Create an array of video sources to preload
     const videoSources = [];
     for (let i = 1; i <= totalVideos; i++) {
       videoSources.push(`videos/hero-${i}.mp4`);
     }
 
-    // Preload videos
     videoSources.forEach((src) => {
       const video = document.createElement("video");
       video.src = src;
@@ -53,9 +46,10 @@ const Hero = () => {
       video.style.display = "none";
       document.body.appendChild(video);
 
-      // Remove the element once loaded or on error
       const cleanup = () => {
-        document.body.removeChild(video);
+        if (document.body.contains(video)) {
+          document.body.removeChild(video);
+        }
         handleVideoLoad();
       };
 
@@ -63,7 +57,6 @@ const Hero = () => {
       video.addEventListener("error", cleanup, { once: true });
     });
 
-    // Cleanup function
     return () => {
       const hiddenVideos = document.querySelectorAll(
         'video[style="display: none;"]'
@@ -95,9 +88,21 @@ const Hero = () => {
 
   const handleMiniVdClick = () => {
     setHasClicked(true);
-
-    // Simply update the index - videos are already preloaded
+    setIsHovering(false); // Hide preview after clicking
     setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+
+    // Set a timeout to reset the clicked state after animation completes
+    setTimeout(() => {
+      setHasClicked(false);
+    }, 2500); // Slightly longer than the animation duration
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
   };
 
   useGSAP(
@@ -176,11 +181,17 @@ const Hero = () => {
         className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75"
       >
         <div>
-          <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
+          <div
+            className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <VideoPreview>
               <div
                 onClick={handleMiniVdClick}
-                className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100"
+                className={`origin-center scale-50 transition-all duration-500 ease-in ${
+                  isHovering ? "scale-100 opacity-100" : "opacity-0"
+                }`}
               >
                 <video
                   ref={currentVdRef}
