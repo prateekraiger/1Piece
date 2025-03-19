@@ -159,17 +159,6 @@ const About = () => {
           },
           "-=1"
         );
-
-      // Parallax effect for background elements
-      gsap.to(".parallax-bg", {
-        y: "-20%",
-        scrollTrigger: {
-          trigger: "#about",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
     },
     { scope: container }
   );
