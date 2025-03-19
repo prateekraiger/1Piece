@@ -247,7 +247,7 @@ const About = () => {
 
           <video
             ref={videoRef}
-            src="videos/about2.mp4"
+            src="videos/about.mp4"
             autoPlay
             loop
             muted
