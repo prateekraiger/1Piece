@@ -18,11 +18,11 @@ This is a **One Piece-themed** interactive website showcasing **Luffy's Gear 5 t
 ## Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/onepiece-gear5-website.git
+   git clone https://github.com/prateekraiger/1Piece
    ```
 2. Navigate to the project directory:
    ```bash
-   cd onepiece-gear5-website
+   cd 1Piece
    ```
 3. Install dependencies:
    ```bash
