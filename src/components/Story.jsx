@@ -101,7 +101,7 @@ const FloatingImage = () => {
               ref={frameRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              src="/videos/gear5.mp4"
+              src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742726565/gear5_rey1cm.mp4"
               className="w-full h-full object-cover scale-100 group-hover:scale-[1.02] transition-transform duration-300"
               loop
               muted

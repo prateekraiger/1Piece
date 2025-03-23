@@ -236,7 +236,7 @@ const About = () => {
 
           <video
             ref={videoRef}
-            src="videos/about.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742726559/about_ua05xo.mp4"
             autoPlay
             loop
             muted
