@@ -99,7 +99,7 @@ const Characters = () => (
           className="w-full border border-green-500/30 rounded-md overflow-hidden h-[500px]"
         >
           <BentoCard
-            src="videos/zoro.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742439387/zptnlstvyvovbjcl4n4n.mp4"
             title="Roronoa Zoro"
             description="The swordsman of the Straw Hat crew, mastering the Three-Sword Style."
             isReadMore
@@ -110,7 +110,7 @@ const Characters = () => (
         {/* Card 2 - Shanks */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/red-shanks.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742724818/red-shanks_rol09l.mp4"
             title="Red-Haired Shanks"
             description="One of the Four Emperors, the man who inspired Luffy to become a pirate."
             isReadMore
@@ -121,7 +121,7 @@ const Characters = () => (
         {/* Trafalgar Law */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/law.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742724828/law_i7ov0n.mp4"
             title={
               <>
                 TRAFALGAR
@@ -138,7 +138,7 @@ const Characters = () => (
         {/* Monkey D. Garp */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/garp.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742439382/vuhdcerdjecohfqqf5i4.mp4"
             title={
               <>
                 MONKEY D.
@@ -155,7 +155,7 @@ const Characters = () => (
         {/* Gol D. Roger */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/roger.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742439375/etlktah22gw3bgcmg7nj.mp4"
             title={
               <>
                 GOL D.
@@ -172,7 +172,7 @@ const Characters = () => (
         {/* Blackbeard */}
         <BentoTilt className="w-full border border-red-500/30 rounded-md overflow-hidden h-[500px]">
           <BentoCard
-            src="videos/blackbeard.mp4"
+            src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1742439378/xxbc3i5vikfs2jfmucba.mp4"
             title={
               <>
                 MARSHALL D.
