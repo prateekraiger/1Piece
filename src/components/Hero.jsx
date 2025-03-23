@@ -219,9 +219,7 @@ const Hero = () => {
           />
           <video
             ref={mainVdRef}
-            src={`videos/hero-${
-              currentIndex === totalVideos - 1 ? 1 : currentIndex
-            }.mp4`}
+            src={`videos/hero-${currentIndex}.mp4`}
             autoPlay
             loop
             muted
