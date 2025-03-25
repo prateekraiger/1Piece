@@ -53,5 +53,5 @@ If you wish to contribute:
 This project is inspired by **One Piece** and its legendary protagonist, **Monkey D. Luffy**.
 
 ## License
-This project is open-source under the **Apache License**.
+This project is open-source under the **Apache License**. 
 
