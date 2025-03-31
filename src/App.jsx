@@ -3,6 +3,7 @@ import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LogoSpinner from "./components/LogoSpinner";
 import onePieceLogo from "/img/profile/logo.png";
+import TextCursor from "./components/TextCursor";
 
 // Lazy Loading Components
 const Hero = lazy(() => import("./components/Hero"));
@@ -53,6 +54,20 @@ const App = () => {
         <LogoSpinner />
       ) : (
         <main className="relative min-h-screen w-screen overflow-x-hidden">
+          <div className="fixed inset-0 w-full h-full z-40 pointer-events-none">
+            <div className="w-full h-full">
+              <TextCursor
+                text="⚓"
+                delay={0.01}
+                spacing={80}
+                followMouseDirection={true}
+                randomFloat={true}
+                exitDuration={0.3}
+                removalInterval={20}
+                maxPoints={10}
+              />
+            </div>
+          </div>
           <NavBar logo={onePieceLogo} />
           <Suspense fallback={<LogoSpinner />}>
             <Hero />

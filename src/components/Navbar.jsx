@@ -79,7 +79,7 @@ const NavBar = ({ logo }) => {
               id="product-button"
               title="Watch Trailer"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-red-500 text-white md:flex hidden items-center justify-center gap-1 hover:bg-red-600 transition-colors duration-300"
+              containerClass="bg-red-500 text-red md:flex hidden items-center justify-center gap-1 hover:bg-white-600 transition-colors duration-300"
               link={"https://www.youtube.com/watch?v=dM7x1PNZDo0"}
             />
           </div>

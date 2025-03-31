@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "animate-presence": "^0.2.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.5.0",
+    "framer-motion": "^12.6.2",
     "gsap": "^3.12.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
