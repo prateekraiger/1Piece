@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  width: 100dvw;
+  width: 100%;
   overflow-x: hidden;
   background-color: #dfdff0;
   font-family: "General Sans", sans-serif;
@@ -69,19 +69,19 @@ body {
   }
 
   .hero-heading {
-    @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
+    @apply uppercase font-zentry font-black text-4xl sm:text-6xl md:text-8xl lg:text-[10rem];
   }
 
   .about-subtext {
-    @apply absolute bottom-[-95dvh] md:bottom-[-85dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular-web text-lg md:max-w-[34rem];
+    @apply absolute bottom-[-95dvh] md:bottom-[-85dvh] left-1/2 w-full max-w-[20rem] sm:max-w-[28rem] md:max-w-[34rem] -translate-x-1/2 text-center font-circular-web text-sm sm:text-lg;
   }
 
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+    @apply absolute left-1/2 top-0 z-20 h-[40vh] sm:h-[50vh] md:h-[60vh] w-64 sm:w-80 md:w-[30vw] origin-center -translate-x-1/2 overflow-hidden rounded-3xl;
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[4rem];
+    @apply flex flex-col gap-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase leading-[.8] text-white sm:px-10 md:px-32;
   }
 
   .animated-word {
@@ -100,7 +100,7 @@ body {
   }
 
   .bento-title {
-    @apply uppercase md:text-6xl text-4xl font-black font-zentry;
+    @apply uppercase text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-zentry;
   }
 
   .story-img-container {
@@ -119,7 +119,7 @@ body {
   }
 
   .gallery-img-container {
-    @apply size-64 overflow-hidden bg-violet-300;
+    @apply size-48 sm:size-64 md:size-80 overflow-hidden bg-violet-300;
   }
 
   .gallery-img {
@@ -127,19 +127,22 @@ body {
   }
 
   .gallery-img-4 {
-    @apply sm:size-80 md:h-96 md:w-[25rem] rounded-lg;
+    @apply sm:size-64 md:h-80 md:w-[20rem] lg:h-96 lg:w-[25rem] rounded-lg;
   }
 
   .sword-man-clip-path {
     clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+    @apply w-40 sm:w-48 md:w-64 lg:w-72;
   }
 
   .contact-clip-path-1 {
     clip-path: polygon(25% 0%, 74% 0, 69% 64%, 34% 73%);
+    @apply w-40 sm:w-48 md:w-64 lg:w-72;
   }
 
   .contact-clip-path-2 {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
+    @apply w-40 sm:w-48 md:w-64 lg:w-72;
   }
 }
 
@@ -157,10 +160,12 @@ body {
     height: 4px;
     transform: translateY(-0px);
   }
+
   50% {
     height: 16px;
     transform: translateY(-4px);
   }
+
   100% {
     height: 4px;
     transform: translateY(-0px);
@@ -220,8 +225,7 @@ body {
 .three-body__dot:nth-child(2)::after {
   bottom: 0;
   left: 0;
-  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15)
-    ease-in-out;
+  animation: wobble1 var(--uib-speed) infinite calc(var(--uib-speed) * -0.15) ease-in-out;
 }
 
 .three-body__dot:nth-child(3) {
@@ -247,6 +251,7 @@ body {
 }
 
 @keyframes wobble1 {
+
   0%,
   100% {
     transform: translateY(0%) scale(1);
@@ -260,6 +265,7 @@ body {
 }
 
 @keyframes wobble2 {
+
   0%,
   100% {
     transform: translateY(0%) scale(1);

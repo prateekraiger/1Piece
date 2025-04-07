@@ -14,40 +14,40 @@ const About = () => {
 
   useGSAP(
     () => {
-      // Initial fancy welcome text animation
+      // Enhanced welcome text animation
       const letters = gsap.utils.toArray(".welcome-letter");
       gsap.from(letters, {
         opacity: 0,
-        y: gsap.utils.wrap([-20, 20]),
-        rotationX: gsap.utils.wrap([-90, 90]),
-        stagger: 0.08,
-        duration: 1.2,
-        ease: "back.out(1.7)",
+        y: gsap.utils.wrap([-30, 30]),
+        rotationX: gsap.utils.wrap([-120, 120]),
+        stagger: 0.06,
+        duration: 1.5,
+        ease: "back.out(2)",
       });
 
-      // Custom shine effect for welcome text
+      // Shine effect for welcome text
       gsap.to(".welcome-text", {
         backgroundPosition: "200% center",
-        duration: 5,
+        duration: 4,
         repeat: -1,
         ease: "linear",
       });
 
       // About section text entrance
       gsap.from(".about-subtext", {
-        duration: 1,
-        y: 50,
+        duration: 1.2,
+        y: 60,
         opacity: 0,
-        delay: 0.4,
+        delay: 0.5,
         ease: "power3.out",
       });
 
       // Floating particles animation
       particlesRef.current.forEach((particle) => {
         gsap.to(particle, {
-          x: () => gsap.utils.random(-15, 15),
-          y: () => gsap.utils.random(-15, 15),
-          duration: gsap.utils.random(1.5, 3),
+          x: () => gsap.utils.random(-20, 20),
+          y: () => gsap.utils.random(-20, 20),
+          duration: gsap.utils.random(2, 4),
           repeat: -1,
           yoyo: true,
           ease: "sine.inOut",
@@ -58,11 +58,11 @@ const About = () => {
       gsap.fromTo(
         videoRef.current,
         {
-          scale: 1.2,
-          opacity: 0.8,
+          scale: 1.3,
+          opacity: 0.7,
         },
         {
-          scale: 1.05,
+          scale: 1,
           opacity: 1,
           scrollTrigger: {
             trigger: "#clip",
@@ -76,28 +76,27 @@ const About = () => {
       // Container size control
       gsap.fromTo(
         clipContainerRef.current,
-        { height: "60vh" },
+        { height: "50vh" },
         {
-          height: "80vh",
+          height: "75vh",
           scrollTrigger: {
             trigger: "#clip",
             start: "top center",
             end: "bottom center",
-            scrub: 0.5,
+            scrub: 0.6,
           },
         }
       );
 
-      // Clip path animation timeline - starts with square, becomes rectangular
+      // Clip path animation timeline
       const clipAnimation = gsap.timeline({
         scrollTrigger: {
           trigger: "#clip",
           start: "top center",
-          end: "+=600 center",
-          scrub: 0.8,
+          end: "+=700 center",
+          scrub: 1,
           pin: true,
           pinSpacing: true,
-          markers: false,
         },
       });
 
@@ -105,43 +104,45 @@ const About = () => {
         .fromTo(
           ".mask-clip-path",
           {
-            scale: 0.95,
+            scale: 0.9,
             opacity: 0.8,
-            width: "60vh", // Square dimensions initially
-            height: "60vh", // Equal width/height for square
-            borderRadius: "16px",
+            width: "50vh",
+            height: "50vh",
+            borderRadius: "20px",
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // Start as a square
           },
           {
-            width: "90%", // Expand to rectangular shape
-            height: "70vh",
-            borderRadius: "8px",
+            width: "85%",
+            height: "65vh",
+            borderRadius: "10px",
             scale: 1,
             opacity: 1,
+            clipPath: "polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%)", // Transition to a larger rectangle
             ease: "power2.inOut",
           }
         )
         .fromTo(
           ".content-overlay",
-          { y: 100, opacity: 0 },
+          { y: 120, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 1.5,
+            duration: 1.8,
             onStart: () => {
               // Text character animation
               gsap.to(".quote-text", {
-                duration: 1.2,
+                duration: 1.5,
                 clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
-                stagger: 0.02,
+                stagger: 0.03,
                 ease: "power4.out",
               });
 
-              // Also animate the author text
+              // Animate the author text
               gsap.to(".author-text", {
-                duration: 1.2,
+                duration: 1.5,
                 opacity: 1,
                 clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
-                delay: 0.5,
+                delay: 0.6,
                 ease: "power4.out",
               });
             },
@@ -153,8 +154,8 @@ const About = () => {
           { scale: 0 },
           {
             scale: 1,
-            stagger: 0.1,
-            duration: 0.5,
+            stagger: 0.15,
+            duration: 0.7,
             ease: "back.out(3)",
           },
           "-=1"

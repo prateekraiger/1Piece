@@ -17,20 +17,20 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-screen bg-[#5542ff] py-4 text-[#dfdff0]/[.8]">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
-        <p className="text-center text-sm font-light md:text-left transition-colors duration-500 ease-in-out hover:text-white">
+    <footer className="w-screen bg-[#5542ff] py-4 sm:py-6 text-[#dfdff0]/[.8]">
+      <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 sm:flex-row">
+        <p className="text-center text-xs sm:text-sm font-light md:text-left transition-colors duration-500 ease-in-out hover:text-white">
           © Pratik 2025. All rights reserved
         </p>
 
-        <div className="flex justify-center gap-4 md:justify-start">
+        <div className="flex justify-center gap-2 sm:gap-4 md:justify-start">
           {socialLinks.map((link, index) => (
             <a
               key={index}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#dfdff0]/[.8] transition-colors duration-500 ease-in-out hover:text-white text-lg"
+              className="text-[#dfdff0]/[.8] transition-colors duration-500 ease-in-out hover:text-white text-base sm:text-lg"
             >
               {link.icon}
             </a>
@@ -39,7 +39,7 @@ const Footer = () => {
 
         <a
           href="#privacy-policy"
-          className="text-center text-sm font-light hover:underline md:text-right hover:text-white transition-colors duration-500 ease-in-out"
+          className="text-center text-xs sm:text-sm font-light hover:underline md:text-right hover:text-white transition-colors duration-500 ease-in-out"
         >
           Privacy Policy
         </a>

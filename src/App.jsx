@@ -29,7 +29,7 @@ const App = () => {
     });
 
     Promise.all(loadImages).then(() => {
-      setTimeout(() => setIsLoading(false), 1000); // Ensure a smooth transition
+      setTimeout(() => setIsLoading(false), 2500); // Increased loader duration to 2.5 seconds
     });
 
     // Intersection Observer for animations

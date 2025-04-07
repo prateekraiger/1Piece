@@ -73,25 +73,25 @@ const NavBar = ({ logo }) => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-4">
-            <img src={logo} alt="One Piece Logo" className="h-16" />
+            <img src={logo} alt="One Piece Logo" className="h-12 sm:h-16" />
 
             <Button
               id="product-button"
               title="Watch Trailer"
               rightIcon={<TiLocationArrow />}
-              containerClass="bg-red-500 text-red md:flex hidden items-center justify-center gap-1 hover:bg-white-600 transition-colors duration-300"
+              containerClass="bg-red-500 text-red hidden sm:flex items-center justify-center gap-1 hover:bg-white-600 transition-colors duration-300"
               link={"https://www.youtube.com/watch?v=dM7x1PNZDo0"}
             />
           </div>
 
           {/* Navigation Links and Audio Button */}
           <div className="flex h-full items-center">
-            <div className="hidden md:block">
+            <div className="hidden sm:flex h-full items-center">
               {navItems.map((item, index) => (
                 <a
                   key={index}
                   href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                  className="nav-hover-btn text-white hover:text-yellow-400 transition-colors duration-300 px-4 py-2"
+                  className="nav-hover-btn text-white hover:text-yellow-400 transition-colors duration-300 px-2 sm:px-4 py-1 sm:py-2"
                 >
                   {item}
                 </a>
