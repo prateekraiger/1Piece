@@ -91,7 +91,7 @@ const NavBar = ({ logo }) => {
                 <a
                   key={index}
                   href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-                  className="nav-hover-btn text-white hover:text-yellow-400 transition-colors duration-300 px-2 sm:px-4 py-1 sm:py-2"
+                  className="nav-hover-btn text-white hover:text-yellow-400 hover-glow transition-colors duration-300 px-2 sm:px-4 py-1 sm:py-2"
                 >
                   {item}
                 </a>

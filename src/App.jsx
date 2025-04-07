@@ -29,17 +29,21 @@ const App = () => {
     });
 
     Promise.all(loadImages).then(() => {
-      setTimeout(() => setIsLoading(false), 2500); // Increased loader duration to 2.5 seconds
+      setTimeout(() => setIsLoading(false), 2500); // Adjusted loader duration to 2.5 seconds for smoother experience
     });
 
     // Intersection Observer for animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("animate-in");
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+          } else {
+            entry.target.classList.remove("animate-in"); // Ensure animations reset when out of view
+          }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 } // Increased threshold for smoother animations
     );
     document
       .querySelectorAll("section")

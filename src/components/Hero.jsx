@@ -182,7 +182,7 @@ const Hero = () => {
       >
         <div>
           <div
-            className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg"
+            className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg hover-glow"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >

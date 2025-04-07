@@ -30,7 +30,7 @@ const Footer = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#dfdff0]/[.8] transition-colors duration-500 ease-in-out hover:text-white text-base sm:text-lg"
+              className="text-[#dfdff0]/[.8] hover-glow transition-colors duration-500 ease-in-out hover:text-white text-base sm:text-lg"
             >
               {link.icon}
             </a>

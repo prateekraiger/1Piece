@@ -144,6 +144,30 @@ body {
     clip-path: polygon(29% 15%, 85% 30%, 50% 100%, 10% 64%);
     @apply w-40 sm:w-48 md:w-64 lg:w-72;
   }
+
+  .hover-glow {
+    @apply transition-all duration-300 ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .animate-out {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
 
 .indicator-line {
